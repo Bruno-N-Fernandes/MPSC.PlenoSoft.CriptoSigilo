@@ -1,5 +1,3 @@
-using System;
-
 namespace CriptoSigilo.Models
 {
 	public class ErrorViewModel

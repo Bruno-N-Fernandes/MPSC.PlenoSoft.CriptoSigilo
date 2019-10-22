@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CriptoSigilo.Models;
 using Microsoft.AspNetCore.Mvc;
-using CriptoSigilo.Models;
+using System.Diagnostics;
 
 namespace CriptoSigilo.Controllers
 {
@@ -12,7 +8,14 @@ namespace CriptoSigilo.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+			return View(new MensagemSigilosa());
+		}
+
+		[HttpPost]
+		public IActionResult Index(MensagemSigilosa mensagemSigilosa)
+		{
+			mensagemSigilosa.Processar();
+			return View(mensagemSigilosa);
 		}
 
 		public IActionResult Privacy()

@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model CriptoSigilo.Models.MensagemSigilosa
+@{
+	ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="View">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Operacao" class="control-label">Operação</label>
+				<select asp-for="Operacao" asp-items="Model.Operacoes"></select>
+				<br />
+				<label asp-for="Key1" class="control-label">Key 1</label>
+				<input asp-for="Key1" type="password" value="@Model.Key1" />
+				<br />
+				<label asp-for="Key2" class="control-label">Key 2</label>
+				<input asp-for="Key2" type="password" value="@Model.Key2" />
+				<br />
+				<label asp-for="Mensagem1" class="control-label"></label>
+				<textarea name="Mensagem1" id="Mensagem1" type="text" rows="8" cols="100">@Model.Mensagem1</textarea>
+				<span asp-validation-for="Mensagem1" class="text-danger"></span>
+				<input type="submit" value="Processar" class="btn btn-primary" />
+				<br />
+				<label asp-for="Mensagem2" class="control-label"></label>
+				<textarea name="Mensagem2" id="Mensagem2" type="text" rows="8" cols="100">@Model.Mensagem2</textarea>
+			</div>
+			<div class="form-group">
+			</div>
+		</form>
+	</div>
 </div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
